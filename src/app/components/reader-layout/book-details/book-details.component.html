@@ -1,0 +1,126 @@
+<div class="section pt-5" style="background: #F1EAE0">
+  <div class="container" style="min-height: 80vh">
+    <div class="main-content">
+      <div class="row" *ngIf="book">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <h1 class="text-danger mb-0">{{book.title}}</h1>
+                <h4 class="mt-0">By <span class="text-dark">{{book.author}}</span></h4>
+                <div>
+                  <label>DESCRIPTION: </label>
+                  <p>{{book.description}}</p>
+                </div>
+                <div>
+                  <label>ISBN: </label>
+                  <p>{{book.isbn}}</p>
+                </div>
+                <div>
+                  <label>PUBLISH DATE: </label>
+                  <p>{{book.publishDate}}</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div>
+                  <img [src]="imageUrl+book.imagePath" alt="...">
+                </div>
+                <div class="text-center">
+                  <h4 class="text-warning">
+                    <i class="fas fa-star"></i> {{book.rating || 0}}
+                  </h4>
+                </div>
+                <div class="text-center">
+                  <button (click)="onRequestBook(book)" class="btn btn-outline-success">
+                    Request
+                  </button>
+                  <button class="btn btn-outline-warning" (click)="onAddReview()">
+                    Add Review
+                  </button>
+                  <h6 class="error-msg" *ngIf="error">
+                    {{error}}
+                  </h6>
+                  <h6 class="text-success" *ngIf="successMessage">
+                    {{successMessage}}
+                  </h6>
+                </div>
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="mt-0">Comments</h4>
+              </div>
+              <div *ngFor="let review of reviews" class="col-md-12">
+                <div class="comment">
+                  <h6 class="mt-0">{{review.comment}}</h6>
+                  <p class="text-warning"><i class="fas fa-star"></i> {{review.rating}}</p>
+                  <p class="comment-time">{{review.addedOn}}</p></div>
+              </div>
+              <div class="col-md-12" *ngIf="!reviews.length">
+                <p>No reviews found!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="reviewClicked" class="modal fade" id="reviewModal" tabindex="-1" role="dialog"
+     aria-labelledby="loginModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="reviewForm" (ngSubmit)="onSaveReview()">
+          <div class="form-group">
+            <label>Comment</label>
+            <textarea formControlName="comment" class="form-control"
+                      placeholder="Add you comment">
+            </textarea>
+          </div>
+
+          <div *ngIf="f.comment.errors && (submitted || !f.comment.pristine)"
+               class="error-msg">
+            <div [hidden]="!f.comment.errors.required">
+              Comment is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <select class="form-control" id="rating" formControlName="rating">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div *ngIf="f.rating.errors && (submitted || !f.rating.pristine)"
+               class="error-msg">
+            <div [hidden]="!f.rating.errors.required">
+              Rating is required
+            </div>
+          </div>
+          <div *ngIf="showError">
+            Invalid Credentials
+          </div>
+          <button type="submit" [disabled]="isLoading"
+                  class="btn btn-success btn-block">
+            Save Review
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

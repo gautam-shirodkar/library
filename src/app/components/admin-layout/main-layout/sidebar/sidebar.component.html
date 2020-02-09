@@ -1,0 +1,38 @@
+<div class="sidebar" data-color="white" data-background-color="brown" data-active-color="danger">
+  <div class="logo text-center">
+    <a routerLink="/admin" class="simple-text logo-normal">
+      Online Library
+    </a>
+  </div>
+  <div class="sidebar-wrapper text-center">
+    <ul class="nav">
+      <li>
+        <a routerLink="/admin/books">
+          <p>Books</p>
+        </a>
+      </li>
+      <li *ngIf="userType === 'admin'">
+        <a routerLink="/admin/librarians">
+          <p>Librarians</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/readers">
+          <p>Readers</p>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/admin/requests">
+          <p>Book Requests</p>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/admin/reviews">
+          <p>Reviews</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

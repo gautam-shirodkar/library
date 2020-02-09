@@ -1,0 +1,39 @@
+<div class="container mt-5 pt-5">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Book Title</th>
+                                <th>Requested On</th>
+                                <th>Actions</th>
+                                </thead>
+                                <tbody>
+
+                                <tr *ngFor="let request of requests">
+                                    <td>{{request.bookTitle}}</td>
+                                    <td>{{request.requestDate}}</td>
+                                    <td>
+                                        <span>{{request.requestStatus === 1 ? 'Pending' : request.requestStatus === 2 ? 'Approved' : 'Rejected'}}</span>
+                                    </td>
+                                </tr>
+
+                                <ng-container *ngIf="!requests.length">
+                                    <tr>
+                                        <td colspan="100%">No requests found</td>
+                                    </tr>
+                                </ng-container>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

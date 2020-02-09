@@ -1,0 +1,49 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th>UserId</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                            </thead>
+                            <tbody>
+                            <ng-container *ngIf="list.length">
+                                <tr *ngFor="let user of list">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.firstName}}</td>
+                                    <td>{{user.lastName}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.phone}}</td>
+                                    <td>
+                                    <span (click)="activateUser(user)" class="btn btn-sm"
+                                          [ngClass]="{'btn-outline-success': !user.status, 'btn-outline-danger': user.status}">
+                                        {{user.status ? 'De-Activate' : 'Activate'}}
+                                    </span>
+                                        &nbsp;
+                                        <span (click)="deleteUser(user)" class="btn btn-sm btn-outline-default">
+                                            Delete
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="!list.length">
+                                <tr>
+                                    <td colspan="100%">No users found</td>
+                                </tr>
+                            </ng-container>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

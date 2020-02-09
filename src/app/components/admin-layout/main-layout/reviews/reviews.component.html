@@ -1,0 +1,53 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+              <th>UserId</th>
+              <th>Book Id</th>
+              <th>Ratings</th>
+              <th>Comments</th>
+              <th>Reviewed On</th>
+              <th>Actions</th>
+              </thead>
+              <tbody>
+              <ng-container *ngIf="reviews.length">
+                <tr *ngFor="let review of reviews">
+                  <td>{{review.userId}}</td>
+                  <td>{{review.bookId}}</td>
+                  <td>{{review.rating}}</td>
+                  <td>{{review.comment}}</td>
+                  <td>{{review.reviewDate}}</td>
+                  <td>
+                    <ng-container *ngIf="review.reviewStatus === 0">
+                      <span (click)="acceptReview(review)" class="btn btn-sm btn-outline-success">Accept</span>
+                      &nbsp;
+                      <span (click)="rejectReview(review)" class="btn btn-sm btn-outline-default">Reject</span>
+                    </ng-container>
+                    <ng-container *ngIf="review.reviewStatus === 1">
+                      <span class="text-success">Accepted</span>
+                    </ng-container>
+                    <ng-container *ngIf="review.reviewStatus === 2">
+                      <span class="text-danger">Rejected</span>
+                    </ng-container>
+
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="!reviews.length">
+                <tr>
+                  <td colspan="100%">No reviews found</td>
+                </tr>
+              </ng-container>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

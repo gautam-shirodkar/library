@@ -1,0 +1,52 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+              <th>Id</th>
+              <th>UserId</th>
+              <th>Book Id</th>
+              <th>Book Title</th>
+              <th>Requested On</th>
+              <th>Actions</th>
+              </thead>
+              <tbody>
+              <ng-container *ngIf="requests.length">
+                <tr *ngFor="let request of requests">
+                  <td>{{request._id}}</td>
+                  <td>{{request.userId}}</td>
+                  <td>{{request.bookId}}</td>
+                  <td>{{request.bookTitle}}</td>
+                  <td>{{request.requestDate}}</td>
+                  <td>
+                    <ng-container *ngIf="request.requestStatus === 1">
+                      <span (click)="acceptRequest(request)" class="btn btn-sm btn-outline-success">Accept</span>&nbsp;
+                      <span (click)="rejectRequest(request)" class="btn btn-sm btn-outline-default">Reject</span>
+                    </ng-container>
+                    <ng-container *ngIf="request.requestStatus === 2">
+                      <span class="text-success">Accepted</span>
+                    </ng-container>
+                    <ng-container *ngIf="request.requestStatus === 3">
+                      <span class="text-danger">Rejected</span>
+                    </ng-container>
+
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="!requests.length">
+                <tr>
+                  <td colspan="100%">No requests found</td>
+                </tr>
+              </ng-container>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

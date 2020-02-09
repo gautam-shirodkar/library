@@ -1,0 +1,49 @@
+<div class="section pt-3" style="background: #F1EAE0">
+  <div class="container">
+    <div class="main-content">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="input-group">
+            <input type="text" class="form-control"
+                   placeholder="Search Books"
+                   [(ngModel)]="searchBook">
+            <div class="input-group-append" (click)="searchBooks()">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <ng-container *ngFor="let book of bookList">
+          <div class="col-md-3">
+            <div class="card card-user">
+              <div class="image">
+                <img [src]="imageUrl+book.image" alt="...">
+              </div>
+              <div class="card-body">
+                <div class="text-center">
+                  <h5 class="text-danger mb-0">{{book.title}}</h5>
+                  <p class="text-center pb-2">
+                    <small>{{book.author}}</small>
+                  </p>
+                  <p class="text-warning">
+                    <i class="fas fa-star"></i> {{book.rating || 0}}
+                  </p>
+                </div>
+              </div>
+              <div class="card-footer">
+                <hr>
+                <div class="button-container">
+                  <button class="btn btn-info" (click)="gotToBook(book)">
+                    View
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+

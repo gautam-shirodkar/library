@@ -1,0 +1,26 @@
+export const URL_CONFIG = {
+  bookUrl: 'http://localhost:8080/' + 'images/books/',
+
+  addBook: 'books/add',
+  userLogin: 'auth/login',
+  userDetails: 'auth/user',
+  librariansList: 'librarians/list',
+  addLibrarian: 'librarians/signup',
+  librarianStatus: 'librarians/status',
+  librarianRemove: 'librarians/remove',
+  readersList: 'users/list',
+  bookList: 'books/list',
+  addUser: 'users/signup',
+  userStatus: 'users/status',
+  userRemove: 'users/remove',
+  bookDetails: 'books/details',
+  requestBook: 'books/request',
+  requestsList: 'books/request-list',
+  acceptRequest: 'books/accept-request',
+  rejectRequest: 'books/reject-request',
+  userRequests: 'users/requests',
+  bookReview: 'books/review',
+  acceptReview: 'books/accept-review',
+  rejectReview: 'books/reject-review',
+  searchBook: 'books/search-book'
+};
